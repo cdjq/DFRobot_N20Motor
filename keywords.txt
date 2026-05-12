@@ -1,0 +1,31 @@
+#######################################
+# Syntax Map For DFRobot_N20Motor
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DFRobot_N20Motor  KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin         KEYWORD2
+setSpeed      KEYWORD2
+forward       KEYWORD2
+backward      KEYWORD2
+stop          KEYWORD2
+brake         KEYWORD2
+getSpeed      KEYWORD2
+getDirection  KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+eStop      LITERAL1
+eForward   LITERAL1
+eBackward  LITERAL1
+eBrake     LITERAL1

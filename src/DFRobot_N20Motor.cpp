@@ -58,6 +58,11 @@ void DFRobot_N20Motor::setSpeed(int16_t speed)
 
 void DFRobot_N20Motor::forward(uint8_t speed)
 {
+  if (speed == 0) {
+    stop();
+    return;
+  }
+
   analogWrite(_inA, speed);
   analogWrite(_inB, 0);
   _speed = speed;
@@ -66,6 +71,11 @@ void DFRobot_N20Motor::forward(uint8_t speed)
 
 void DFRobot_N20Motor::backward(uint8_t speed)
 {
+  if (speed == 0) {
+    stop();
+    return;
+  }
+
   analogWrite(_inA, 0);
   analogWrite(_inB, speed);
   _speed = -(int16_t)speed;

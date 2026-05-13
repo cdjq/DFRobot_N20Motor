@@ -76,6 +76,10 @@ class DFRobot_N20Motor:
       @brief Forward rotation.
       @param speed PWM duty input range: 0~255.
     '''
+    if speed == 0:
+      self.stop()
+      return
+
     duty = self._to_duty(speed)
     self._pwm_a.ChangeDutyCycle(duty)
     self._pwm_b.ChangeDutyCycle(0)
@@ -87,6 +91,10 @@ class DFRobot_N20Motor:
       @brief Backward rotation.
       @param speed PWM duty input range: 0~255.
     '''
+    if speed == 0:
+      self.stop()
+      return
+
     duty = self._to_duty(speed)
     self._pwm_a.ChangeDutyCycle(0)
     self._pwm_b.ChangeDutyCycle(duty)

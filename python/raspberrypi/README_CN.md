@@ -7,7 +7,7 @@
 N20 直流电机 Python 驱动库，用于树莓派平台双 PWM 引脚控制 N20 微型直流电机，支持正转、反转、空转停止和电子刹车功能。
 
 ## 产品链接 ()
-    SKU: DFR1277
+    SKU: DFR1276
 
 ## 目录
 
@@ -103,10 +103,6 @@ pip3 install RPi.GPIO
       @brief 释放 GPIO 资源。
     '''
 ```
-
-## 示例
-
-* [motor_control](./examples/motor_control/motor_control.py)
 
 ## 历史
 

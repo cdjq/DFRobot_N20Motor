@@ -7,7 +7,7 @@
 The N20 DC motor Python library provides dual PWM pin control for N20 micro DC motors on Raspberry Pi, supporting forward, backward, coast stop and electrical brake functions.
 
 ## Product Link ()
-    SKU: DFR1277
+    SKU: DFR1276
 
 ## Table of Contents
 
@@ -103,10 +103,6 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
       @brief Release GPIO resources.
     '''
 ```
-
-## Examples
-
-* [motor_control](./examples/motor_control/motor_control.py)
 
 ## History
 

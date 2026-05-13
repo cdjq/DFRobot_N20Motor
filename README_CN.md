@@ -9,7 +9,7 @@ N20 直流电机驱动库，使用双 PWM 引脚控制 N20 微型直流电机，
 ![产品图片]
 
 ## 产品链接 ()
-    SKU: DFR1277
+    SKU: DFR1276
 
 ## 目录
 
@@ -106,10 +106,6 @@ N20 直流电机驱动库，使用双 PWM 引脚控制 N20 微型直流电机，
    */
   eDirection_t getDirection(void) const;
 ```
-
-## 示例
-
-* [motorControl](./examples/motorControl/motorControl.ino)
 
 ## 兼容性
 

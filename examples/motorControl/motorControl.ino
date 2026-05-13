@@ -14,8 +14,8 @@
 #include "DFRobot_N20Motor.h"
 
 #if defined(ARDUINO_ARCH_ESP32)
-#define N20_INA_PIN 5
-#define N20_INB_PIN 6
+#define N20_INA_PIN D5
+#define N20_INB_PIN D6
 #else
 #define N20_INA_PIN 10
 #define N20_INB_PIN 11

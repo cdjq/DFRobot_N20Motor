@@ -9,7 +9,7 @@ The N20 DC motor driver library provides dual PWM pin control for N20 micro DC m
 ![product image]
 
 ## Product Link ()
-    SKU: DFR1277
+    SKU: DFR1276
 
 ## Table of Contents
 
@@ -106,10 +106,6 @@ Download the library file (https://github.com/DFRobot/DFRobot_N20Motor.git) befo
    */
   eDirection_t getDirection(void) const;
 ```
-
-## Examples
-
-* [motorControl](./examples/motorControl/motorControl.ino)
 
 ## Compatibility
 

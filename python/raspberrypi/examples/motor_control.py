@@ -9,12 +9,16 @@
   @url https://github.com/DFRobot/DFRobot_N20Motor
 '''
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 from DFRobot_N20Motor import DFRobot_N20Motor
 
 
 def main():
-  motor = DFRobot_N20Motor(in_a_pin=12, in_b_pin=13)
+  motor = DFRobot_N20Motor(in_a_pin=17, in_b_pin=18)
   motor.begin()
 
   try:
@@ -24,9 +28,6 @@ def main():
 
       motor.set_speed(-180)
       time.sleep(2)
-
-      motor.brake()
-      time.sleep(1)
 
       motor.stop()
       time.sleep(1)

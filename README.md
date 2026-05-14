@@ -4,7 +4,7 @@
 
 * [中文版](./README_CN.md)
 
-The N20 DC motor driver library provides dual PWM pin control for N20 micro DC motors, supporting forward rotation, backward rotation, coast stop and electrical brake functions.
+The N20 DC motor driver library provides dual PWM pin control for N20 micro DC motors, supporting speed control, direction control and coast stop functions.
 
 ![product image]
 
@@ -25,7 +25,7 @@ The N20 DC motor driver library provides dual PWM pin control for N20 micro DC m
 
 * Dual pin motor control (INA, INB)<br/>
 * Adjustable speed range: -255 ~ 255<br/>
-* Forward, backward, coast stop, and brake modes
+* Forward, backward, and coast stop modes
 
 ## Installation
 
@@ -63,48 +63,10 @@ Download the library file (https://github.com/DFRobot/DFRobot_N20Motor.git) befo
   void setSpeed(int16_t speed);
 
   /**
-   * @fn forward
-   * @brief Forward rotation with PWM speed.
-   * @param speed PWM duty, range: 0~255.
-   */
-  void forward(uint8_t speed);
-
-  /**
-   * @fn backward
-   * @brief Backward rotation with PWM speed.
-   * @param speed PWM duty, range: 0~255.
-   */
-  void backward(uint8_t speed);
-
-  /**
    * @fn stop
    * @brief Coast stop (INA=LOW, INB=LOW).
    */
   void stop(void);
-
-  /**
-   * @fn brake
-   * @brief Electrical brake (INA=HIGH, INB=HIGH).
-   */
-  void brake(void);
-
-  /**
-   * @fn getSpeed
-   * @brief Get last set speed value.
-   * @return int16_t Last speed, range: -255~255.
-   */
-  int16_t getSpeed(void) const;
-
-  /**
-   * @fn getDirection
-   * @brief Get current motor direction/state.
-   * @return eDirection_t
-   * @n     eStop      Coast stop
-   * @n     eForward   Forward rotation
-   * @n     eBackward  Backward rotation
-   * @n     eBrake     Electrical brake
-   */
-  eDirection_t getDirection(void) const;
 ```
 
 ## Compatibility

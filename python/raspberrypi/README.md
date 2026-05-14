@@ -4,7 +4,7 @@
 
 * [中文版](./README_CN.md)
 
-The N20 DC motor Python library provides dual PWM pin control for N20 micro DC motors on Raspberry Pi, supporting forward, backward, coast stop and electrical brake functions.
+The N20 DC motor Python library provides dual PWM pin control for N20 micro DC motors on Raspberry Pi, supporting speed control, direction control and coast stop functions.
 
 ## Product Link ()
     SKU: DFR1276
@@ -22,8 +22,8 @@ The N20 DC motor Python library provides dual PWM pin control for N20 micro DC m
 
 * Dual pin motor control (IN_A, IN_B) using RPi.GPIO<br/>
 * PWM speed control with adjustable frequency<br/>
-* Forward, backward, coast stop, and brake modes<br/>
-* Default GPIO: INA=GPIO12, INB=GPIO13
+* Forward, backward, and coast stop modes<br/>
+* Default GPIO: INA=GPIO17, INB=GPIO18
 
 ## Installation
 
@@ -39,11 +39,11 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
 
 ```python
 
-  def __init__(self, in_a_pin=12, in_b_pin=13, pwm_frequency=5000):
+  def __init__(self, in_a_pin=17, in_b_pin=18, pwm_frequency=5000):
     '''!
       @brief Construct the class.
-      @param in_a_pin BCM pin for INA, default 12.
-      @param in_b_pin BCM pin for INB, default 13.
+      @param in_a_pin BCM pin for INA, default 17.
+      @param in_b_pin BCM pin for INB, default 18.
       @param pwm_frequency PWM frequency in Hz, default 5000.
     '''
 
@@ -60,42 +60,9 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
       @n speed > 0: forward, speed < 0: backward, speed == 0: stop.
     '''
 
-  def forward(self, speed):
-    '''!
-      @brief Forward rotation.
-      @param speed PWM duty input range: 0~255.
-    '''
-
-  def backward(self, speed):
-    '''!
-      @brief Backward rotation.
-      @param speed PWM duty input range: 0~255.
-    '''
-
   def stop(self):
     '''!
       @brief Coast stop (both outputs LOW).
-    '''
-
-  def brake(self):
-    '''!
-      @brief Electrical brake (both outputs HIGH).
-    '''
-
-  def get_speed(self):
-    '''!
-      @brief Return last set speed.
-      @return int Speed -255~255.
-    '''
-
-  def get_direction(self):
-    '''!
-      @brief Return current direction/state.
-      @return int
-      @n     STOP     0, coast stop
-      @n     FORWARD  1, forward
-      @n     BACKWARD 2, backward
-      @n     BRAKE    3, brake
     '''
 
   def cleanup(self):

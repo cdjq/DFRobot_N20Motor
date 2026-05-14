@@ -16,17 +16,6 @@
 class DFRobot_N20Motor {
 public:
   /**
-   * @enum eDirection_t
-   * @brief Motor direction/state enumeration.
-   */
-  typedef enum {
-    eStop = 0,      /**< Coast stop, INA=LOW, INB=LOW */
-    eForward,       /**< Forward rotation */
-    eBackward,      /**< Backward rotation */
-    eBrake          /**< Brake, INA=HIGH, INB=HIGH */
-  } eDirection_t;
-
-  /**
    * @fn DFRobot_N20Motor
    * @brief Constructor, pins can be set here or by begin().
    * @param inA INA pin number.
@@ -53,54 +42,14 @@ public:
   void setSpeed(int16_t speed);
 
   /**
-   * @fn forward
-   * @brief Forward rotation with PWM speed.
-   * @param speed PWM duty, range: 0~255.
-   */
-  void forward(uint8_t speed);
-
-  /**
-   * @fn backward
-   * @brief Backward rotation with PWM speed.
-   * @param speed PWM duty, range: 0~255.
-   */
-  void backward(uint8_t speed);
-
-  /**
    * @fn stop
    * @brief Coast stop (INA=LOW, INB=LOW).
    */
   void stop(void);
 
-  /**
-   * @fn brake
-   * @brief Electrical brake (INA=HIGH, INB=HIGH).
-   */
-  void brake(void);
-
-  /**
-   * @fn getSpeed
-   * @brief Get last set speed value.
-   * @return int16_t Last speed, range: -255~255.
-   */
-  int16_t getSpeed(void) const;
-
-  /**
-   * @fn getDirection
-   * @brief Get current motor direction/state.
-   * @return eDirection_t
-   * @n     eStop      Coast stop
-   * @n     eForward   Forward rotation
-   * @n     eBackward  Backward rotation
-   * @n     eBrake     Electrical brake
-   */
-  eDirection_t getDirection(void) const;
-
 protected:
   uint8_t _inA;
   uint8_t _inB;
-  int16_t _speed;
-  eDirection_t _direction;
 };
 
 #endif

@@ -17,12 +17,7 @@ class DFRobot_N20Motor:
     @brief N20 DC motor control class for Raspberry Pi.
   '''
 
-  STOP = 0
-  FORWARD = 1
-  BACKWARD = 2
-  BRAKE = 3
-
-  def __init__(self, in_a_pin=12, in_b_pin=13, pwm_frequency=5000):
+  def __init__(self, in_a_pin=17, in_b_pin=18, pwm_frequency=5000):
     '''!
       @brief Construct the class.
       @param in_a_pin BCM pin for INA.
@@ -34,8 +29,6 @@ class DFRobot_N20Motor:
     self._pwm_frequency = pwm_frequency
     self._pwm_a = None
     self._pwm_b = None
-    self._speed = 0
-    self._direction = self.STOP
 
   def begin(self):
     '''!
@@ -65,41 +58,15 @@ class DFRobot_N20Motor:
       speed = -255
 
     if speed > 0:
-      self.forward(speed)
+      duty = self._to_duty(speed)
+      self._pwm_a.ChangeDutyCycle(duty)
+      self._pwm_b.ChangeDutyCycle(0)
     elif speed < 0:
-      self.backward(-speed)
+      duty = self._to_duty(-speed)
+      self._pwm_a.ChangeDutyCycle(0)
+      self._pwm_b.ChangeDutyCycle(duty)
     else:
       self.stop()
-
-  def forward(self, speed):
-    '''!
-      @brief Forward rotation.
-      @param speed PWM duty input range: 0~255.
-    '''
-    if speed == 0:
-      self.stop()
-      return
-
-    duty = self._to_duty(speed)
-    self._pwm_a.ChangeDutyCycle(duty)
-    self._pwm_b.ChangeDutyCycle(0)
-    self._speed = int(speed)
-    self._direction = self.FORWARD
-
-  def backward(self, speed):
-    '''!
-      @brief Backward rotation.
-      @param speed PWM duty input range: 0~255.
-    '''
-    if speed == 0:
-      self.stop()
-      return
-
-    duty = self._to_duty(speed)
-    self._pwm_a.ChangeDutyCycle(0)
-    self._pwm_b.ChangeDutyCycle(duty)
-    self._speed = -int(speed)
-    self._direction = self.BACKWARD
 
   def stop(self):
     '''!
@@ -107,31 +74,6 @@ class DFRobot_N20Motor:
     '''
     self._pwm_a.ChangeDutyCycle(0)
     self._pwm_b.ChangeDutyCycle(0)
-    self._speed = 0
-    self._direction = self.STOP
-
-  def brake(self):
-    '''!
-      @brief Brake (both outputs high duty).
-    '''
-    self._pwm_a.ChangeDutyCycle(100)
-    self._pwm_b.ChangeDutyCycle(100)
-    self._speed = 0
-    self._direction = self.BRAKE
-
-  def get_speed(self):
-    '''!
-      @brief Return last speed.
-      @return int Speed -255~255.
-    '''
-    return self._speed
-
-  def get_direction(self):
-    '''!
-      @brief Return current direction/state.
-      @return int STOP/FORWARD/BACKWARD/BRAKE.
-    '''
-    return self._direction
 
   def cleanup(self):
     '''!

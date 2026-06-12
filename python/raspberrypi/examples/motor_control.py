@@ -17,12 +17,12 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from DFRobot_N20Motor import DFRobot_N20Motor
 
-INA_PIN = 17
-INB_PIN = 18
+in_a_pin = 17
+in_b_pin = 18
 
 
 def main():
-  motor = DFRobot_N20Motor(in_a_pin=INA_PIN, in_b_pin=INB_PIN)
+  motor = DFRobot_N20Motor(in_a_pin=in_a_pin, in_b_pin=in_b_pin)
 
   print()
   print("========================================")
@@ -34,7 +34,7 @@ def main():
     print("[ERROR] Motor init failed, check pin configuration.")
     return
 
-  print("[OK] Motor initialized (INA: {}, INB: {})".format(INA_PIN, INB_PIN))
+  print("[OK] Motor initialized (INA: {}, INB: {})".format(in_a_pin, in_b_pin))
   print("Starting speed control loop...")
   print()
 

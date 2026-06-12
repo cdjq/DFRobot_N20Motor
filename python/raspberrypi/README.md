@@ -38,7 +38,6 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
 ## Methods
 
 ```python
-
   def __init__(self, in_a_pin=17, in_b_pin=18, pwm_frequency=5000):
     '''!
       @brief Construct the class.

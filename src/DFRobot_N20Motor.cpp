@@ -1,7 +1,7 @@
 /*!
  * @file DFRobot_N20Motor.cpp
  * @brief Implementation for N20 DC motor driver.
- * @copyright Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
+ * @copyright Copyright (c) 2026 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license The MIT License (MIT)
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0.0
@@ -32,7 +32,7 @@ bool DFRobot_N20Motor::begin(uint8_t inA, uint8_t inB)
 
   pinMode(_inA, OUTPUT);
   pinMode(_inB, OUTPUT);
-  stop();
+  setSpeed(0);
   return true;
 }
 
@@ -52,14 +52,9 @@ void DFRobot_N20Motor::setSpeed(int16_t speed)
     analogWrite(_inA, 0);
     analogWrite(_inB, (uint8_t)(-speed));
   } else {
-    stop();
+    analogWrite(_inA, 0);
+    analogWrite(_inB, 0);
+    digitalWrite(_inA, LOW);
+    digitalWrite(_inB, LOW);
   }
-}
-
-void DFRobot_N20Motor::stop(void)
-{
-  analogWrite(_inA, 0);
-  analogWrite(_inB, 0);
-  digitalWrite(_inA, LOW);
-  digitalWrite(_inB, LOW);
 }

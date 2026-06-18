@@ -1,7 +1,7 @@
 /*!
  * @file DFRobot_N20Motor.h
  * @brief Declaration for N20 DC motor driver library.
- * @copyright Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
+ * @copyright Copyright (c) 2026 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license The MIT License (MIT)
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0.0
@@ -40,12 +40,6 @@ public:
    * @n speed > 0: forward, speed < 0: backward, speed == 0: stop.
    */
   void setSpeed(int16_t speed);
-
-  /**
-   * @fn stop
-   * @brief Coast stop (INA=LOW, INB=LOW).
-   */
-  void stop(void);
 
 protected:
   uint8_t _inA;

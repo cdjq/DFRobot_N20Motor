@@ -1,7 +1,7 @@
 '''!
   @file motor_control.py
   @brief Example for N20 DC motor control on Raspberry Pi.
-  @copyright Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @copyright Copyright (c) 2026 DFRobot Co.Ltd (http://www.dfrobot.com)
   @license The MIT License (MIT)
   @author JiaLi(zhixin.liu@dfrobot.com)
   @version V1.0.0
@@ -17,13 +17,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from DFRobot_N20Motor import DFRobot_N20Motor
 
-in_a_pin = 17
-in_b_pin = 18
+N20_INA_PWM_PIN = 17
+N20_INB_PWM_PIN = 18
+
+motor = DFRobot_N20Motor(in_a_pin=N20_INA_PWM_PIN, in_b_pin=N20_INB_PWM_PIN)
 
 
-def main():
-  motor = DFRobot_N20Motor(in_a_pin=in_a_pin, in_b_pin=in_b_pin)
-
+def setup():
   print()
   print("========================================")
   print("  DFRobot N20 Motor")
@@ -32,36 +32,40 @@ def main():
 
   if not motor.begin():
     print("[ERROR] Motor init failed, check pin configuration.")
-    return
+    sys.exit(1)
 
-  print("[OK] Motor initialized (INA: {}, INB: {})".format(in_a_pin, in_b_pin))
+  print("[OK] Motor initialized (INA PWM: {}, INB PWM: {})".format(
+      N20_INA_PWM_PIN, N20_INB_PWM_PIN))
   print("Starting speed control loop...")
   print()
 
+
+def loop():
+  print("-> Speed 255")
+  motor.set_speed(255)
+  time.sleep(2)
+
+  print("-> Speed 150")
+  motor.set_speed(150)
+  time.sleep(1.5)
+
+  print("-> Speed -255")
+  motor.set_speed(-255)
+  time.sleep(2)
+
+  print("-> Speed 0")
+  motor.set_speed(0)
+  time.sleep(1.5)
+
+  print()
+
+
+if __name__ == "__main__":
   try:
+    setup()
     while True:
-      print("-> Speed 255")
-      motor.set_speed(255)
-      time.sleep(2)
-
-      print("-> Speed 150")
-      motor.set_speed(150)
-      time.sleep(1.5)
-
-      print("-> Speed -255")
-      motor.set_speed(-255)
-      time.sleep(2)
-
-      print("-> Stop")
-      motor.stop()
-      time.sleep(1.5)
-
-      print()
+      loop()
   except KeyboardInterrupt:
     pass
   finally:
     motor.cleanup()
-
-
-if __name__ == "__main__":
-  main()

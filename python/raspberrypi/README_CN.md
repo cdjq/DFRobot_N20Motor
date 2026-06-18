@@ -6,7 +6,7 @@
 
 N20 直流电机 Python 驱动库，用于树莓派平台双 PWM 引脚控制 N20 微型直流电机，支持速度控制、方向控制和空转停止功能。
 
-## 产品链接 ()
+## 产品链接 (https://www.dfrobot.com)
     SKU: DFR1276
 
 ## 目录
@@ -50,7 +50,7 @@ pip3 install RPi.GPIO
   def begin(self):
     '''!
       @brief 初始化 GPIO 和 PWM 通道。
-      @return bool 成功返回 True。
+      @return bool 成功返回 True，失败返回 False。
     '''
 
   def set_speed(self, speed):
@@ -58,16 +58,13 @@ pip3 install RPi.GPIO
       @brief 设置速度和方向。
       @param speed 速度范围：-255~255。
       @n speed > 0: 正转，speed < 0: 反转，speed == 0: 停止。
-    '''
-
-  def stop(self):
-    '''!
-      @brief 空转停止（两路输出低电平）。
+      @return bool 成功返回 True，失败返回 False。
     '''
 
   def cleanup(self):
     '''!
       @brief 释放 GPIO 资源。
+      @return bool 成功返回 True，失败返回 False。
     '''
 ```
 

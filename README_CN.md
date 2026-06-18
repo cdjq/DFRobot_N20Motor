@@ -8,7 +8,7 @@ N20 直流电机驱动库，使用双 PWM 引脚控制 N20 微型直流电机，
 
 ![产品图片]
 
-## 产品链接 ()
+## 产品链接 (https://www.dfrobot.com)
     SKU: DFR1276
 
 ## 目录
@@ -61,12 +61,6 @@ N20 直流电机驱动库，使用双 PWM 引脚控制 N20 微型直流电机，
    * @n speed > 0: 正转，speed < 0: 反转，speed == 0: 停止。
    */
   void setSpeed(int16_t speed);
-
-  /**
-   * @fn stop
-   * @brief 空转停止（INA=LOW, INB=LOW）。
-   */
-  void stop(void);
 ```
 
 ## 兼容性
@@ -80,6 +74,7 @@ FireBeetle-ESP8266 |      √       |                 |             |
 FireBeetle-ESP32   |      √       |                 |             |
 FireBeetle-M0      |      √       |                 |             |
 Micro:bit          |              |                 |     √       |
+RP2040             |      √       |                 |             |
 
 ## 历史
 

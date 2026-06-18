@@ -1,7 +1,7 @@
 '''!
   @file DFRobot_N20Motor.py
   @brief Implementation for N20 DC motor driver on Raspberry Pi.
-  @copyright Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @copyright Copyright (c) 2026 DFRobot Co.Ltd (http://www.dfrobot.com)
   @license The MIT License (MIT)
   @author JiaLi(zhixin.liu@dfrobot.com)
   @version V1.0.0
@@ -29,61 +29,81 @@ class DFRobot_N20Motor:
     self._pwm_frequency = pwm_frequency
     self._pwm_a = None
     self._pwm_b = None
+    self._initialized = False
 
   def begin(self):
     '''!
       @brief Initialize GPIO and PWM channels.
-      @return bool True if success.
+      @return bool True: success, False: failed.
     '''
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(self._in_a_pin, GPIO.OUT)
-    GPIO.setup(self._in_b_pin, GPIO.OUT)
+    if not self._is_valid_pin(self._in_a_pin) or not self._is_valid_pin(self._in_b_pin):
+      return False
 
-    self._pwm_a = GPIO.PWM(self._in_a_pin, self._pwm_frequency)
-    self._pwm_b = GPIO.PWM(self._in_b_pin, self._pwm_frequency)
-    self._pwm_a.start(0)
-    self._pwm_b.start(0)
+    try:
+      GPIO.setmode(GPIO.BCM)
+      GPIO.setup(self._in_a_pin, GPIO.OUT)
+      GPIO.setup(self._in_b_pin, GPIO.OUT)
 
-    self.stop()
-    return True
+      self._pwm_a = GPIO.PWM(self._in_a_pin, self._pwm_frequency)
+      self._pwm_b = GPIO.PWM(self._in_b_pin, self._pwm_frequency)
+      self._pwm_a.start(0)
+      self._pwm_b.start(0)
+
+      self._initialized = True
+      return True
+    except (RuntimeError, ValueError):
+      self._initialized = False
+      return False
 
   def set_speed(self, speed):
     '''!
       @brief Set speed and direction.
       @param speed Speed range: -255~255.
+      @return bool True: success, False: failed.
     '''
+    if not self._initialized or self._pwm_a is None or self._pwm_b is None:
+      return False
+
     if speed > 255:
       speed = 255
     if speed < -255:
       speed = -255
 
-    if speed > 0:
-      duty = self._to_duty(speed)
-      self._pwm_a.ChangeDutyCycle(duty)
-      self._pwm_b.ChangeDutyCycle(0)
-    elif speed < 0:
-      duty = self._to_duty(-speed)
-      self._pwm_a.ChangeDutyCycle(0)
-      self._pwm_b.ChangeDutyCycle(duty)
-    else:
-      self.stop()
-
-  def stop(self):
-    '''!
-      @brief Coast stop.
-    '''
-    self._pwm_a.ChangeDutyCycle(0)
-    self._pwm_b.ChangeDutyCycle(0)
+    try:
+      if speed > 0:
+        duty = self._to_duty(speed)
+        self._pwm_a.ChangeDutyCycle(duty)
+        self._pwm_b.ChangeDutyCycle(0)
+      elif speed < 0:
+        duty = self._to_duty(-speed)
+        self._pwm_a.ChangeDutyCycle(0)
+        self._pwm_b.ChangeDutyCycle(duty)
+      else:
+        self._pwm_a.ChangeDutyCycle(0)
+        self._pwm_b.ChangeDutyCycle(0)
+      return True
+    except RuntimeError:
+      return False
 
   def cleanup(self):
     '''!
       @brief Release GPIO resources.
+      @return bool True: success, False: failed.
     '''
-    if self._pwm_a is not None:
-      self._pwm_a.stop()
-    if self._pwm_b is not None:
-      self._pwm_b.stop()
-    GPIO.cleanup((self._in_a_pin, self._in_b_pin))
+    try:
+      if self._pwm_a is not None:
+        self._pwm_a.stop()
+      if self._pwm_b is not None:
+        self._pwm_b.stop()
+      GPIO.cleanup((self._in_a_pin, self._in_b_pin))
+      self._initialized = False
+      return True
+    except RuntimeError:
+      return False
+
+  @staticmethod
+  def _is_valid_pin(pin):
+    return isinstance(pin, int) and 0 <= pin <= 27
 
   @staticmethod
   def _to_duty(speed):

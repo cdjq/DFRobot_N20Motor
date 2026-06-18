@@ -6,7 +6,7 @@
 
 The N20 DC motor Python library provides dual PWM pin control for N20 micro DC motors on Raspberry Pi, supporting speed control, direction control and coast stop functions.
 
-## Product Link ()
+## Product Link (https://www.dfrobot.com)
     SKU: DFR1276
 
 ## Table of Contents
@@ -49,7 +49,7 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
   def begin(self):
     '''!
       @brief Initialize GPIO and PWM channels.
-      @return bool True if success.
+      @return bool True: success, False: failed.
     '''
 
   def set_speed(self, speed):
@@ -57,16 +57,13 @@ Copy `DFRobot_N20Motor.py` and example folder to your Raspberry Pi project.
       @brief Set speed and direction.
       @param speed Speed range: -255~255.
       @n speed > 0: forward, speed < 0: backward, speed == 0: stop.
-    '''
-
-  def stop(self):
-    '''!
-      @brief Coast stop (both outputs LOW).
+      @return bool True: success, False: failed.
     '''
 
   def cleanup(self):
     '''!
       @brief Release GPIO resources.
+      @return bool True: success, False: failed.
     '''
 ```
 

@@ -8,7 +8,7 @@ The N20 DC motor driver library provides dual PWM pin control for N20 micro DC m
 
 ![product image]
 
-## Product Link ()
+## Product Link (https://www.dfrobot.com)
     SKU: DFR1276
 
 ## Table of Contents
@@ -61,12 +61,6 @@ Download the library file (https://github.com/DFRobot/DFRobot_N20Motor.git) befo
    * @n speed > 0: forward, speed < 0: backward, speed == 0: stop.
    */
   void setSpeed(int16_t speed);
-
-  /**
-   * @fn stop
-   * @brief Coast stop (INA=LOW, INB=LOW).
-   */
-  void stop(void);
 ```
 
 ## Compatibility
@@ -80,6 +74,7 @@ FireBeetle-ESP8266 |      √       |                 |             |
 FireBeetle-ESP32   |      √       |                 |             |
 FireBeetle-M0      |      √       |                 |             |
 Micro:bit          |              |                 |     √       |
+RP2040             |      √       |                 |             |
 
 ## History
 

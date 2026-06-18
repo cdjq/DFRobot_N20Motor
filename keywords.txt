@@ -14,7 +14,6 @@ DFRobot_N20Motor  KEYWORD1
 
 begin         KEYWORD2
 setSpeed      KEYWORD2
-stop          KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

@@ -17,11 +17,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from DFRobot_N20Motor import DFRobot_N20Motor
 
-N20_INA_PWM_PIN = 17
-N20_INB_PWM_PIN = 18
+n20_ina_pwm_pin = 17
+n20_inb_pwm_pin = 18
 
-motor = DFRobot_N20Motor(in_a_pin=N20_INA_PWM_PIN, in_b_pin=N20_INB_PWM_PIN)
-
+motor = DFRobot_N20Motor(in_a_pin=n20_ina_pwm_pin, in_b_pin=n20_inb_pwm_pin)
 
 def setup():
   print()
@@ -35,7 +34,7 @@ def setup():
     sys.exit(1)
 
   print("[OK] Motor initialized (INA PWM: {}, INB PWM: {})".format(
-      N20_INA_PWM_PIN, N20_INB_PWM_PIN))
+      n20_ina_pwm_pin, n20_inb_pwm_pin))
   print("Starting speed control loop...")
   print()
 
